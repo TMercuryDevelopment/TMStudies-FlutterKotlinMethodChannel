@@ -26,7 +26,13 @@ class MyApp extends StatelessWidget {
                 onPressed: () {
                   _getMethod1Value();
                 },
-                child: Text('Get OS'),
+                child: Text('Get Message From Kotlin'),
+              ),
+              TextButton(
+                onPressed: () {
+                  _getMethod2Value('Flutter Notification :D');
+                },
+                child: Text('Send Notification from Kotlin'),
               )
             ],
           ),
@@ -36,8 +42,12 @@ class MyApp extends StatelessWidget {
   }
 
   void _getMethod1Value() {
-    MethodChannelBridge.getPlatformOS().then((value) {
+    MethodChannelBridge.getMessageFromKotlin().then((value) {
       print(value);
     });
+  }
+
+  void _getMethod2Value(title) {
+    MethodChannelBridge.callNotificationFromKotlin(title);
   }
 }
